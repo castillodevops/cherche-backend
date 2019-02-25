@@ -15,4 +15,5 @@ use Modules\Core\Domain\Model\ModelEntity;
 interface IUserRepository
 {
     public function saveObject(User $user);
+    public function listAll();
 }

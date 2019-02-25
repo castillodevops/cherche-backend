@@ -12,10 +12,10 @@ namespace Modules\Account\Infrastructure\Adapters\Repository\Mysql;
 use Modules\Account\Domain\Model\User;
 use Modules\Account\Domain\Ports\Repository\IUserRepository;
 use Modules\Core\Domain\Model\ModelEntity;
-use Modules\Core\Infrastructure\Adapter\Repository\Mysql\MysqlRepository;
+use Modules\Core\Infrastructure\Adapter\Repository\Mysql\MysqlCoreRepository;
 use Illuminate\Support\Facades\Log;
 
-class MysqlUserRepository extends MysqlRepository implements IUserRepository
+class MysqlUserRepository extends MysqlCoreRepository implements IUserRepository
 {
     public function saveObject(User $user)
     {

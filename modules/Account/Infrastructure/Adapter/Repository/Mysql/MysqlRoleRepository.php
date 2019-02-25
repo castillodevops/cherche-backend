@@ -9,11 +9,11 @@
 namespace Modules\Account\Infrastructure\Adapters\Repository\Mysql;
 
 
-use Modules\Core\Infrastructure\Adapter\Repository\Mysql\MysqlRepository;
+use Modules\Core\Infrastructure\Adapter\Repository\Mysql\MysqlCoreRepository;
 use Modules\Account\Domain\Model\Role;
 use Modules\Account\Domain\Ports\Repository\IRoleRepository;
 
-class MysqlRoleRepository extends MysqlRepository implements IRoleRepository
+class MysqlRoleRepository extends MysqlCoreRepository implements IRoleRepository
 {
 public function saveObject(Role $role)
 {

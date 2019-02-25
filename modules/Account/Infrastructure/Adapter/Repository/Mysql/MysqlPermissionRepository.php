@@ -9,11 +9,11 @@
 namespace Modules\Account\Infrastructure\Adapters\Repository\Mysql;
 
 
-use Modules\Core\Infrastructure\Adapter\Repository\Mysql\MysqlRepository;
+use Modules\Core\Infrastructure\Adapter\Repository\Mysql\MysqlCoreRepository;
 use Modules\Account\Domain\Model\Permission;
 use Modules\Account\Domain\Ports\Repository\IPermissionRepository;
 
-class MysqlPermissionRepository extends MysqlRepository implements IPermissionRepository
+class MysqlPermissionRepository extends MysqlCoreRepository implements IPermissionRepository
 {
 public function saveObject(Permission $permission)
 {

@@ -6,10 +6,9 @@
  * Time: 5:08 PM
  */
 
-namespace App\modules\Account\Domain\Service;
+namespace App\modules\Account\Domain\Service\AdapterService;
 
 
-use Modules\Account\Domain\Model\DTO\UserDTO;
 use Modules\Account\Domain\Model\User;
 use Modules\Account\Domain\Ports\Repository\IUserRepository;
 use Modules\Core\Domain\Service\CoreService;

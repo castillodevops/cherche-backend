@@ -10,10 +10,12 @@ namespace Modules\Core\Domain\Port\Repository;
 
 
 use Modules\Core\Domain\Model\ModelEntity;
+use Modules\Core\Domain\Model\ModelSearchEntity;
 
-interface IRepository
+interface ICoreRepository
 {
     public function basicSaveOne(ModelEntity $entity);
+    public function listAll(ModelSearchEntity $modelSearchEntity);
 }
 
 
