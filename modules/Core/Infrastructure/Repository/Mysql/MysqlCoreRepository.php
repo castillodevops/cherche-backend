@@ -62,11 +62,16 @@ class MysqlCoreRepository implements ICoreRepository
                   {
 
                           return $modelSearchEntity->entity::all($modelSearchEntity->fields)
-                              ->where($modelSearchEntity->andConditions);
+                              ->where($modelSearchEntity->andConditions)
+                              ->orWhere($modelSearchEntity->orConditions);
 
                   }
+                  return $modelSearchEntity->entity::all($modelSearchEntity->fields)
+                      ->where($modelSearchEntity->andConditions);
               }
+              return $modelSearchEntity->entity::all($modelSearchEntity->fields);
           }
+          return $modelSearchEntity->entity::all();
 
       }
       catch (\Exception $exception)
@@ -74,4 +79,6 @@ class MysqlCoreRepository implements ICoreRepository
           throw $exception;
       }
    }
+
+
 }

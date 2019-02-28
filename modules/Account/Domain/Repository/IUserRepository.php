@@ -6,7 +6,7 @@
  * Time: 4:16 PM
  */
 
-namespace Modules\Account\Domain\Ports\Repository;
+namespace Modules\Account\Domain\Repository;
 
 
 use Modules\Account\Domain\Model\User;

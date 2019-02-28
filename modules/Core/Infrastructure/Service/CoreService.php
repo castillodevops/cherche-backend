@@ -9,7 +9,7 @@
 namespace Modules\Core\Domain\Service;
 
 
-class CoreService
+class CoreService implements \ICoreService
 {
 
 }

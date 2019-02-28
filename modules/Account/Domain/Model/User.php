@@ -17,13 +17,38 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+
+    private $name;
+    private $lastName;
+    private $email;
+    private $password;
+    private $phone;
+    private $status;
+    private $country;
+
+    public function __construct($name, $lastName, $email, $password, $phone, $status, $country)
+    {
+        $attributes = [
+            $name,
+            $lastName,
+            $email,
+            $password,
+            $phone,
+            $status,
+            $country
+        ];
+        parent::__construct($attributes);
+    }
+
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'lastName', 'email', 'password', 'phone', 'status', 'country',
     ];
 
     /**
