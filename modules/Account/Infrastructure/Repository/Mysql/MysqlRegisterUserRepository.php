@@ -5,6 +5,9 @@
  * Date: 3/5/19
  * Time: 3:27 AM
  */
+namespace Mudules\Account\Infrastructure\Respository\Mysql;
+
+use Illuminate\Support\Facades\Log;
 use \Modules\Core\Infrastructure\Adapter\Repository\Mysql\MysqlCoreRepository;
 use \Modules\Account\Domain\Repository\IRegisterUserRepository;
 use \Modules\Core\Domain\Model\ModelSearchEntity;
@@ -28,9 +31,17 @@ class MysqlRegisterUserRepository extends MysqlCoreRepository implements IRegist
      */
     public function saveObject(Account $user)
     {
-        if (!empty($user)) {
-            $this->basicSaveOne($user);
+        try
+        {
+            if (!empty($user)) {
+                $this->basicSaveOne($user);
+            }
+            return $user;
+        }catch (Exception $exception){
+            Log::error('Error: '.$exception->getMessage(), [
+                'Account' => $user
+            ]);
         }
-        return $user;
+
     }
 }

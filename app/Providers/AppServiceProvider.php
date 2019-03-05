@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\Account\Domain\Repository\IRegisterUserRepository;
+use Mudules\Account\Infrastructure\Respository\Mysql\MysqlRegisterUserRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,5 +26,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        /**
+         * Account
+         */
+        $this->app->bind(\IRegisterUserService::class, \RegisterUserService::class);
+        $this->app->bind(IRegisterUserRepository::class, MysqlRegisterUserRepository::class);
     }
 }

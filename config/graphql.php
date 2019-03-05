@@ -127,6 +127,8 @@ return [
 
             ],
             'mutation' => [
+                //======================================Account==================================================
+                'RegisterUser' => \App\GraphQL\Account\Mutation\RegisterUserMutation::class,
 
             ]
         ]
@@ -181,6 +183,9 @@ return [
      * ]
      */
     'types' => [
+        //===================Account===============================================
+        \App\GraphQL\Account\Type\RegisterUserInputType::class,
+        \App\GraphQL\Account\Type\RegisterUserOutputType::class,
 
     ],
 
