@@ -1,19 +1,19 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: nerox
+ * Account: nerox
  * Date: 2/16/19
  * Time: 4:15 PM
  */
 
 namespace Modules\Account\Domain\Model;
 
-
+use App\User;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Account extends User
 {
     use Notifiable;
 
@@ -25,6 +25,7 @@ class User extends Authenticatable
     private $phone;
     private $status;
     private $country;
+
 
     public function __construct($name, $lastName, $email, $password, $phone, $status, $country)
     {
