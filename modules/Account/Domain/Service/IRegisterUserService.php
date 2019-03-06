@@ -5,9 +5,12 @@
  * Date: 3/5/19
  * Time: 3:15 AM
  */
-use \Modules\Account\Domain\Model\Account;
+namespace Modules\Account\Domain\Service;
+
+use Modules\Account\Domain\Model\Account;
+use Modules\Account\Domain\Model\Input\AccountDTO;
 
 interface IRegisterUserService
 {
-    public function executeService(Account $account): Account;
+    public function executeService(AccountDTO $account);
 }

@@ -13,12 +13,17 @@ use Folklore\GraphQL\Support\Type as BaseType;
 use GraphQL;
 
 
-class RegisterUserOutputType
+class RegisterUserOutputType extends BaseType
 {
     protected $attributes = [
         'name' => 'RegisterUserOutputType',
         'description' => 'A Register Output Type'
     ];
+
+    public function __construct($attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
     public function fields()
     {

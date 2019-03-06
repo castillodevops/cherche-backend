@@ -8,40 +8,46 @@
 
 namespace App\GraphQL\Account\Mutation;
 
-use App\User;
-
-use ICreateUserService;
-
-use Folklore\GraphQL\Support\Mutation;
+use App\GraphQL\Account\Type\RegisterUserInputType;
+use App\GraphQL\Core\Mutation\CoreMutation;
+use GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
-use GraphQL;
-use Modules\Account\Domain\Model\Account;
 
-class RegisterUserMutation
+use Modules\Account\Domain\Model\Account;
+use Modules\Account\Domain\Model\Input\AccountDTO;
+use Modules\Account\Domain\Service\IRegisterUserService;
+
+
+
+class RegisterUserMutation extends CoreMutation
 {
-    private $createUserService;
+
+
     protected $attributes = [
         'name' => 'RegisterUserMutation',
         'description' => 'A Register User Mutation '
     ];
 
-    public function __construct(ICreateUserService $createUserService)
+    private $registerUserService;
+
+    public function __construct($attributes = [], IRegisterUserService $registerUserService)
     {
-        $this->createUserService = $createUserService;
+        parent::__construct($attributes);
+        $this->registerUserService = $registerUserService;
     }
 
     public function type()
     {
-        return GraphQL::type('RegisterUserOutput');
+        return GraphQL::type('RegisterUserOutputType');
     }
 
     public function args()
     {
         return [
-           'request' => [
-               'type' => GraphQL::type('RegiterUserInput'),
-           ],
+            'input' => [
+               'type' => Type::nonNull(GraphQL::type('RegisterUserInputType'))
+            ],
         ];
     }
 
@@ -53,23 +59,26 @@ class RegisterUserMutation
      */
     public function resolve($root, $args, $context, ResolveInfo $info)
     {
-        $name = $args['request']['name'];
+        $data = $args['input'];
 
-        $surName = $args['request']['surName'];
+        $name = $data['name'];
 
-        $mobileName = $args['request']['mobileName'];
+        $surName = $data['surName'];
 
-        $email = $args['request']['email'];
+        $phone = $data['mobileNumber'];
 
-        $password = $args['request']['password'];
+        $email = $data['email'];
 
-        $status = $args['request']['status'];
+        $password = $data['password'];
 
-        $country = $args['request']['country'];
+        $status = "Pending";
 
-        $user  = new Account(name, $surName, $mobileName, $email, $password, $status, $country);
-        $this->createUserService->executeService($user);
+        $country = $data['country'];
 
+        $accountDTO  = new AccountDTO($name, $surName, $phone, $email, $password, $status, $country);
+
+        $newAccount = $this->registerUserService->executeService($accountDTO);
+        return $newAccount;
 
     }
 }

@@ -12,44 +12,18 @@ use App\User;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Modules\Core\Domain\Model\ModelEntity;
 
-class Account extends User
+class Account extends ModelEntity
 {
     use Notifiable;
-
-
-    private $name;
-    private $lastName;
-    private $email;
-    private $password;
-    private $phone;
-    private $status;
-    private $country;
-
-
-    public function __construct($name, $lastName, $email, $password, $phone, $status, $country)
-    {
-        $attributes = [
-            $name,
-            $lastName,
-            $email,
-            $password,
-            $phone,
-            $status,
-            $country
-        ];
-        parent::__construct($attributes);
-    }
-
-
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'lastName', 'email', 'password', 'phone', 'status', 'country',
+        'name', 'surName', 'email', 'password', 'phone', 'status', 'country',
     ];
 
     /**

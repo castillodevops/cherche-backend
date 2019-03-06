@@ -183,9 +183,14 @@ return [
      * ]
      */
     'types' => [
-        //===================Account===============================================
-        \App\GraphQL\Account\Type\RegisterUserInputType::class,
-        \App\GraphQL\Account\Type\RegisterUserOutputType::class,
+        /**
+         *
+         *
+         * Account
+         *
+         */
+        'RegisterUserInputType' => \App\GraphQL\Account\Type\RegisterUserInputType::class,
+        'RegisterUserOutputType' => \App\GraphQL\Account\Type\RegisterUserOutputType::class,
 
     ],
 

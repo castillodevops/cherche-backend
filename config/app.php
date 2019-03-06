@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Folklore\GraphQL\ServiceProvider::class,
+        JeroenNoten\LaravelAdminLte\ServiceProvider::class,
 
 
 
@@ -229,6 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'GraphQL' => Folklore\GraphQL\Support\Facades\GraphQL::class,
 
     ],
 

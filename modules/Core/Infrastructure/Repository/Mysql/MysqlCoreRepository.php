@@ -6,13 +6,13 @@
  * Time: 4:30 PM
  */
 
-namespace Modules\Core\Infrastructure\Adapter\Repository\Mysql;
+namespace Modules\Core\Infrastructure\Mysql;
 
 
 use Modules\Core\Domain\Model\ModelEntity;
 use Modules\Core\Domain\Model\ModelSearchEntity;
-use Modules\Core\Domain\Port\Repository\ICoreRepository;
 use Illuminate\Support\Facades\Log;
+use Modules\Core\Domain\Repository\ICoreRepository;
 
 class MysqlCoreRepository implements ICoreRepository
 {
@@ -50,7 +50,7 @@ class MysqlCoreRepository implements ICoreRepository
       {
           Log::info('List of '.$modelSearchEntity->entity->getKeyName(),
               [
-                  'Model Search' => $modelSearchEntity,
+                  'Model Output' => $modelSearchEntity,
               ]);
 
 
