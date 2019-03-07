@@ -11,8 +11,7 @@ namespace Modules\Core\Domain\Service;
 
 class CoreService implements ICoreService
 {
-
-    public function __construct()
-    {
-    }
+  public function __construct()
+  {
+  }
 }

@@ -4,9 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Modules\Account\Domain\Repository\IRegisterUserRepository;
-use Mudules\Account\Infrastructure\Respository\Mysql\MysqlRegisterUserRepository;
 use Illuminate\Support\Facades\Schema;
 use Modules\Account\Domain\Service\IRegisterUserService;
+use Modules\Account\Infrastructure\Mysql\MysqlRegisterUserRepository;
 use Modules\Account\Infrastructure\Service\RegisterUserService;
 use Modules\Core\Domain\Repository\ICoreRepository;
 use Modules\Core\Domain\Service\CoreService;

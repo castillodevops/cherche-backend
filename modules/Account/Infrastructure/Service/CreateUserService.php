@@ -7,11 +7,11 @@
  */
 
 use Modules\Core\Domain\Service\CoreService;
-
+use Modules\Account\Domain\Model\Account;
 
 class CreateUserService extends CoreService implements ICreateUserService
 {
-    public function executeService()
+    public function executeService(Account $user)
     {
         // TODO: Implement executeService() method.
     }

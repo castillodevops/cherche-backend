@@ -7,6 +7,7 @@
  */
 namespace Modules\Account\Infrastructure\Service;
 
+use App\User;
 use Modules\Account\Domain\Model\Input\AccountDTO;
 use Modules\Account\Domain\Repository\IRegisterUserRepository;
 use Modules\Account\Domain\Service\IRegisterUserService;
@@ -36,8 +37,9 @@ class RegisterUserService extends CoreService implements IRegisterUserService
               'Account' => $accountDTO,
           ]);
            //TODO: validate data
-           $user = $this->registerUserRepository->saveObject($accountDTO);
-            return $user;
+            $account = $this->buildUserObject($accountDTO);
+//            $result = $this->registerUserRepository->saveObject($account);
+//            return $result;
 
         }catch (\Exception $exception){
             Log::error('Error: in User register '. $exception->getMessage(), [
@@ -46,5 +48,10 @@ class RegisterUserService extends CoreService implements IRegisterUserService
             throw $exception;
         }
 
+    }
+
+    private function buildUserObject(AccountDTO $accountDTO){
+      $account = new Account($accountDTO->toArray());
+      return $account;
     }
 }

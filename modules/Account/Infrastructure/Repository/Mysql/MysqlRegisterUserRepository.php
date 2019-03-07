@@ -27,30 +27,17 @@ class MysqlRegisterUserRepository extends MysqlCoreRepository implements IRegist
     }
 
     /**
-     * @param AccountDTO $accountDTO
-     * @return Account|null
+     * @param Account $account
      */
-    public function saveObject(AccountDTO $accountDTO)
+    public function saveObject(Account $account)
     {
         try
         {
-            if (!empty($accountDTO)) {
+           parent::basicSaveOne($account);
 
-                $user = new Account();
-                $user->name = $accountDTO->name;
-                $user->surName = $accountDTO->surName;
-                $user->email = $accountDTO->email;
-                $user->password = $accountDTO->password;
-                $user->phone = $accountDTO->phone;
-                $user->status = $accountDTO->status;
-                $user->save();
-                return $user;
-            }
-            return null;
-
-        }catch (Exception $exception){
+        }catch (\Exception $exception){
             Log::error('Error: '.$exception->getMessage(), [
-                'Account' => $user
+                'Account' => $account
             ]);
         }
 

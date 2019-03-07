@@ -14,6 +14,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Core\Domain\Model\ModelEntity;
 
+/**
+ * @property  name
+ */
 class Account extends ModelEntity
 {
     use Notifiable;
