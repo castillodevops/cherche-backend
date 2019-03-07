@@ -65,7 +65,7 @@ class RegisterUserMutation extends CoreMutation
 
         $surName = $data['surName'];
 
-        $phone = $data['mobileNumber'];
+        $phone = $data['phone'];
 
         $email = $data['email'];
 
@@ -77,8 +77,8 @@ class RegisterUserMutation extends CoreMutation
 
         $accountDTO  = new AccountDTO($name, $surName, $phone, $email, $password, $status, $country);
 
-        $newAccount = $this->registerUserService->executeService($accountDTO);
-        return $newAccount;
+        $response = $this->registerUserService->executeService($accountDTO)->toArray();
+        return $response;
 
     }
 }

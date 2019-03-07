@@ -9,6 +9,8 @@
 namespace Modules\Account\Domain\Model\Input;
 
 
+use Modules\Account\Domain\Model\Result\RegisterUserDTO;
+
 class AccountDTO
 {
     public $name;
@@ -40,5 +42,18 @@ class AccountDTO
         'status'   => $this->status,
         'country'  => $this->country
         ];
+    }
+
+    public function buildResponseByAttributeName(RegisterUserDTO $registerUserDTO){
+
+        $registerUserDTO->name = $this->name;
+        $registerUserDTO->surName = $this->surName;
+        $registerUserDTO->email = $this->email;
+        $registerUserDTO->password = $this->password;
+        $registerUserDTO->phone = $this->phone;
+        $registerUserDTO->status = $this->status;
+        $registerUserDTO->country = $this->country;
+
+        return $registerUserDTO;
     }
 }

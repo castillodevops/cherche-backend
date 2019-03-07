@@ -27,8 +27,7 @@ class MysqlCoreRepository implements ICoreRepository
           Log::info("Save one entity", [
               'Entity' => $entity,
           ]);
-          $entity->save();
-          return $entity;
+          return $entity->save();
        }
        catch (\Exception $exception)
        {

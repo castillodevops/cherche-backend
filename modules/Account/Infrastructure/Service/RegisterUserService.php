@@ -8,7 +8,9 @@
 namespace Modules\Account\Infrastructure\Service;
 
 use App\User;
+use Illuminate\Support\Facades\Validator;
 use Modules\Account\Domain\Model\Input\AccountDTO;
+use Modules\Account\Domain\Model\Result\RegisterUserDTO;
 use Modules\Account\Domain\Repository\IRegisterUserRepository;
 use Modules\Account\Domain\Service\IRegisterUserService;
 use \Modules\Core\Domain\Service\CoreService;
@@ -30,17 +32,27 @@ class RegisterUserService extends CoreService implements IRegisterUserService
      * @return Account
      * @throws \Exception
      */
-    public function executeService(AccountDTO $accountDTO)
+    public function executeService(AccountDTO $accountDTO) :RegisterUserDTO
     {
         try{
           Log::info('Register User', [
               'Account' => $accountDTO,
           ]);
-           //TODO: validate data
-            $account = new Account($accountDTO->toArray());
+            $validate =  $this->validateFields($accountDTO);
+            if ($validate->fails())
+            {
+                Log::error($validate->errors(), [
+                    'Account' => $accountDTO,
+                ]);
+            }
 
+            $account = new Account($accountDTO->toArray());
+            $registerUser = new RegisterUserDTO($accountDTO, false);
             $result = $this->registerUserRepository->saveObject($account);
-            return $result;
+            if ($result)
+                $registerUser->statusResponse = true;
+
+            return $registerUser;
 
         }catch (\Exception $exception){
             Log::error('Error: in User register '. $exception->getMessage(), [
@@ -51,8 +63,18 @@ class RegisterUserService extends CoreService implements IRegisterUserService
 
     }
 
-    private function buildUserObject(AccountDTO $accountDTO){
-      $account = new Account($accountDTO->toArray());
-      return $account;
-    }
+   private function validateFields(AccountDTO $accountDTO)
+   {
+       $validate = Validator::make($accountDTO->toArray(),[
+           'name' => 'required',
+           'surName' => 'required',
+           'email' => 'required|email|unique',
+           'password' => 'required',
+           'phone' => 'required',
+           'status' => 'required',
+           'country' => 'required'
+
+       ]);
+     return $validate;
+   }
 }

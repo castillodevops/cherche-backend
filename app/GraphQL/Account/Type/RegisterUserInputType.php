@@ -34,8 +34,8 @@ class RegisterUserInputType extends BaseType
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Sur Name'
             ],
-            'mobileNumber' => [
-                'name' => 'mobileNumber',
+            'phone' => [
+                'name' => 'phone',
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Mobile of User'
             ],

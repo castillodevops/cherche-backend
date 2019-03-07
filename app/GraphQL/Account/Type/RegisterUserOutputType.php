@@ -28,30 +28,38 @@ class RegisterUserOutputType extends BaseType
     public function fields()
     {
         return [
-            'name' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'Name of User'
-            ],
-            'surName' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'Sur Name'
-            ],
-            'mobileNumber' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'Mobile of User'
-            ],
-            'email' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'Email of User'
-            ],
-            'password' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'Password of User'
-            ],
-            'country' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'Country of User'
-            ]
+                'name' => [
+                    'type' => Type::nonNull(Type::string()),
+                    'description' => 'Name of User'
+                ],
+                'surName' => [
+                    'type' => Type::nonNull(Type::string()),
+                    'description' => 'Sur Name'
+                ],
+                'phone' => [
+                    'type' => Type::nonNull(Type::string()),
+                    'description' => 'Mobile of User'
+                ],
+                'email' => [
+                    'type' => Type::nonNull(Type::string()),
+                    'description' => 'Email of User'
+                ],
+                'password' => [
+                    'type' => Type::nonNull(Type::string()),
+                    'description' => 'Password of User'
+                ],
+                'status' => [
+                    'type' => Type::nonNull(Type::string()),
+                    'description' => 'Status of User'
+                ],
+                'country' => [
+                    'type' => Type::nonNull(Type::string()),
+                    'description' => 'Country of User'
+                ],
+                'statusResponse' => [
+                    'type' => Type::nonNull(Type::boolean()),
+                    'description' => 'State of Response'
+                ],
 
         ];
     }
