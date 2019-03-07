@@ -32,13 +32,13 @@ class AccountDTO
 
     public function toArray(){
       return [
-        $this->name,
-        $this->surName,
-        $this->email,
-        $this->password,
-        $this->phone,
-        $this->status,
-        $this->country
+        'name'     => $this->name,
+        'surName'  => $this->surName,
+        'email'    => $this->email,
+        'password' => $this->password,
+        'phone'    => $this->phone,
+        'status'   => $this->status,
+        'country'  => $this->country
         ];
     }
 }

@@ -33,7 +33,7 @@ class MysqlRegisterUserRepository extends MysqlCoreRepository implements IRegist
     {
         try
         {
-           parent::basicSaveOne($account);
+         return parent::basicSaveOne($account);
 
         }catch (\Exception $exception){
             Log::error('Error: '.$exception->getMessage(), [

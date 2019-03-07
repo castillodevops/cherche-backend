@@ -28,6 +28,7 @@ class MysqlCoreRepository implements ICoreRepository
               'Entity' => $entity,
           ]);
           $entity->save();
+          return $entity;
        }
        catch (\Exception $exception)
        {

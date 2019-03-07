@@ -37,9 +37,10 @@ class RegisterUserService extends CoreService implements IRegisterUserService
               'Account' => $accountDTO,
           ]);
            //TODO: validate data
-            $account = $this->buildUserObject($accountDTO);
-//            $result = $this->registerUserRepository->saveObject($account);
-//            return $result;
+            $account = new Account($accountDTO->toArray());
+
+            $result = $this->registerUserRepository->saveObject($account);
+            return $result;
 
         }catch (\Exception $exception){
             Log::error('Error: in User register '. $exception->getMessage(), [

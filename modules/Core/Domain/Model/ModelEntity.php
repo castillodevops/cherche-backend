@@ -13,5 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ModelEntity extends Model
 {
-
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 }
