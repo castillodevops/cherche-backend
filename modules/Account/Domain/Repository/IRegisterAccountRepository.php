@@ -11,9 +11,10 @@ namespace Modules\Account\Domain\Repository;
 use App\User;
 use Modules\Account\Domain\Model\Account;
 use Modules\Account\Domain\Model\Input\AccountDTO;
+use Modules\Account\Domain\Model\Input\AccountSearchDTO;
 use Modules\Core\Domain\Model\ModelSearchEntity;
 
-interface IRegisterUserRepository
+interface IRegisterAccountRepository
 {
     public function saveObject(Account $account);
     public function listAll(ModelSearchEntity $modelSearchEntity);

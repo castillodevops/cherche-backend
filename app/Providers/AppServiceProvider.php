@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Modules\Account\Domain\Repository\IRegisterUserRepository;
+use Modules\Account\Domain\Repository\IRegisterAccountRepository;
 use Illuminate\Support\Facades\Schema;
-use Modules\Account\Domain\Service\IRegisterUserService;
-use Modules\Account\Infrastructure\Mysql\MysqlRegisterUserRepository;
-use Modules\Account\Infrastructure\Service\RegisterUserService;
+use Modules\Account\Domain\Service\IListAllAccountService;
+use Modules\Account\Domain\Service\IRegisterAccountService;
+use Modules\Account\Infrastructure\Mysql\MysqlRegisterAccountRepository;
+use Modules\Account\Infrastructure\Service\ListAllAccountService;
+use Modules\Account\Infrastructure\Service\RegisterAccountService;
 use Modules\Core\Domain\Repository\ICoreRepository;
 use Modules\Core\Domain\Service\CoreService;
 use Modules\Core\Domain\Service\ICoreService;
@@ -35,17 +37,28 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         /**
-         * Core
+         * Core Service
+         *
          */
-
-        $this->app->bind(ICoreRepository::class, MysqlCoreRepository::class);
         $this->app->bind(ICoreService::class, CoreService::class);
-        //
         /**
-         * Account
+         *
+         * Core Repository
          */
-        $this->app->bind(IRegisterUserService::class, RegisterUserService::class);
-        $this->app->bind(IRegisterUserRepository::class, MysqlRegisterUserRepository::class);
+        $this->app->bind(ICoreRepository::class, MysqlCoreRepository::class);
+
+
+
+        /**
+         * Account Service
+         */
+        $this->app->bind(IRegisterAccountService::class, RegisterAccountService::class);
+        $this->app->bind(IListAllAccountService::class, ListAllAccountService::class);
+        /**
+         *
+         * Account Repository
+         */
+        $this->app->bind(IRegisterAccountRepository::class, MysqlRegisterAccountRepository::class);
 
     }
 }

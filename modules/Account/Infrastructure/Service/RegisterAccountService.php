@@ -10,18 +10,18 @@ namespace Modules\Account\Infrastructure\Service;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Modules\Account\Domain\Model\Input\AccountDTO;
-use Modules\Account\Domain\Model\Result\RegisterUserDTO;
-use Modules\Account\Domain\Repository\IRegisterUserRepository;
-use Modules\Account\Domain\Service\IRegisterUserService;
+use Modules\Account\Domain\Model\Result\RegisterAccountDTO;
+use Modules\Account\Domain\Repository\IRegisterAccountRepository;
+use Modules\Account\Domain\Service\IRegisterAccountService;
 use \Modules\Core\Domain\Service\CoreService;
 use \Modules\Account\Domain\Model\Account ;
 use \Illuminate\Support\Facades\Log;
 
-class RegisterUserService extends CoreService implements IRegisterUserService
+class RegisterAccountService extends CoreService implements IRegisterAccountService
 {
     private $registerUserRepository;
 
-    public function __construct(IRegisterUserRepository $registerUserRepository)
+    public function __construct(IRegisterAccountRepository $registerUserRepository)
     {
         parent::__construct();
         $this->registerUserRepository = $registerUserRepository;
@@ -32,7 +32,7 @@ class RegisterUserService extends CoreService implements IRegisterUserService
      * @return Account
      * @throws \Exception
      */
-    public function executeService(AccountDTO $accountDTO) :RegisterUserDTO
+    public function executeService(AccountDTO $accountDTO) :RegisterAccountDTO
     {
         try{
           Log::info('Register User', [
@@ -47,7 +47,7 @@ class RegisterUserService extends CoreService implements IRegisterUserService
             }
 
             $account = new Account($accountDTO->toArray());
-            $registerUser = new RegisterUserDTO($accountDTO, false);
+            $registerUser = new RegisterAccountDTO($accountDTO, false);
             $result = $this->registerUserRepository->saveObject($account);
             if ($result)
                 $registerUser->statusResponse = true;
@@ -73,7 +73,6 @@ class RegisterUserService extends CoreService implements IRegisterUserService
            'phone' => 'required',
            'status' => 'required',
            'country' => 'required'
-
        ]);
      return $validate;
    }

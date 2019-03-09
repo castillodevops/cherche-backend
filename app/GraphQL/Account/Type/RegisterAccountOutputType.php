@@ -13,10 +13,10 @@ use Folklore\GraphQL\Support\Type as BaseType;
 use GraphQL;
 
 
-class RegisterUserOutputType extends BaseType
+class RegisterAccountOutputType extends BaseType
 {
     protected $attributes = [
-        'name' => 'RegisterUserOutputType',
+        'name' => 'RegisterAccountOutputType',
         'description' => 'A Register Output Type'
     ];
 

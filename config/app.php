@@ -165,6 +165,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Folklore\GraphQL\ServiceProvider::class,
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
 
 

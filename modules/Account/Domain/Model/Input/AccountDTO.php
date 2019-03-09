@@ -9,7 +9,7 @@
 namespace Modules\Account\Domain\Model\Input;
 
 
-use Modules\Account\Domain\Model\Result\RegisterUserDTO;
+use Modules\Account\Domain\Model\Result\RegisterAccountDTO;
 
 class AccountDTO
 {
@@ -44,7 +44,7 @@ class AccountDTO
         ];
     }
 
-    public function buildResponseByAttributeName(RegisterUserDTO $registerUserDTO){
+    public function buildResponseByAttributeName(RegisterAccountDTO $registerUserDTO){
 
         $registerUserDTO->name = $this->name;
         $registerUserDTO->surName = $this->surName;

@@ -9,25 +9,44 @@ namespace Modules\Account\Infrastructure\Mysql;
 
 use Illuminate\Support\Facades\Log;
 use Modules\Account\Domain\Model\Input\AccountDTO;
-use \Modules\Account\Domain\Repository\IRegisterUserRepository;
+use Modules\Account\Domain\Model\Input\AccountSearchDTO;
+use \Modules\Account\Domain\Repository\IRegisterAccountRepository;
 use \Modules\Core\Domain\Model\ModelSearchEntity;
 use \Modules\Account\Domain\Model\Account ;
 use Modules\Core\Infrastructure\Mysql\MysqlCoreRepository;
 
 
-class MysqlRegisterUserRepository extends MysqlCoreRepository implements IRegisterUserRepository
+class MysqlRegisterAccountRepository extends MysqlCoreRepository implements IRegisterAccountRepository
 {
     /**
      * @param ModelSearchEntity $modelSearchEntity
-     * @return \Illuminate\Database\Eloquent\Collection|\Modules\Core\Domain\Model\ModelEntity[]|void
+     * @return \Illuminate\Database\Eloquent\Collection|\Modules\Core\Domain\Model\ModelEntity[]
+     * @throws \Exception
      */
     public function listAll(ModelSearchEntity $modelSearchEntity)
     {
-        // TODO: Implement listAll() method.
+        try {
+            Log::info('List All User', [
+                'Entity' => $modelSearchEntity->entity
+            ]);
+
+            return parent::listAll($modelSearchEntity);
+
+
+        } catch (\Exception $exception){
+            Log::error($exception->getMessage(),[
+                'Entity' =>$modelSearchEntity->entity
+                ]
+
+            );
+            throw $exception;
+        }
+
     }
 
     /**
      * @param Account $account
+     * @return bool
      */
     public function saveObject(Account $account)
     {

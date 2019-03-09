@@ -54,23 +54,23 @@ class MysqlCoreRepository implements ICoreRepository
               ]);
 
 
-          if (count($modelSearchEntity->fields) > 0)
-          {
-              if (count($modelSearchEntity->andConditions) > 0)
-              {
-                  if (count($modelSearchEntity->orConditions) > 0)
-                  {
-
-                          return $modelSearchEntity->entity::all($modelSearchEntity->fields)
-                              ->where($modelSearchEntity->andConditions)
-                              ->orWhere($modelSearchEntity->orConditions);
-
-                  }
-                  return $modelSearchEntity->entity::all($modelSearchEntity->fields)
-                      ->where($modelSearchEntity->andConditions);
-              }
-              return $modelSearchEntity->entity::all($modelSearchEntity->fields);
-          }
+//          if (count($modelSearchEntity->fields) > 0)
+//          {
+//              if (count($modelSearchEntity->andConditions) > 0)
+//              {
+//                  if (count($modelSearchEntity->orConditions) > 0)
+//                  {
+//
+//                          return $modelSearchEntity->entity::all($modelSearchEntity->fields)
+//                              ->where($modelSearchEntity->andConditions);
+////                              ->orWhere($modelSearchEntity->orConditions);
+//
+//                  }
+//                  return $modelSearchEntity->entity::all($modelSearchEntity->fields)
+//                      ->where($modelSearchEntity->andConditions);
+//              }
+//              return $modelSearchEntity->entity::all($modelSearchEntity->fields);
+//          }
           return $modelSearchEntity->entity::all();
 
       }

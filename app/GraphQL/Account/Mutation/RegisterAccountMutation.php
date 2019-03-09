@@ -8,7 +8,7 @@
 
 namespace App\GraphQL\Account\Mutation;
 
-use App\GraphQL\Account\Type\RegisterUserInputType;
+use App\GraphQL\Account\Type\RegisterAccountInputType;
 use App\GraphQL\Core\Mutation\CoreMutation;
 use GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
@@ -16,22 +16,22 @@ use GraphQL\Type\Definition\Type;
 
 use Modules\Account\Domain\Model\Account;
 use Modules\Account\Domain\Model\Input\AccountDTO;
-use Modules\Account\Domain\Service\IRegisterUserService;
+use Modules\Account\Domain\Service\IRegisterAccountService;
 
 
 
-class RegisterUserMutation extends CoreMutation
+class RegisterAccountMutation extends CoreMutation
 {
 
 
     protected $attributes = [
-        'name' => 'RegisterUserMutation',
+        'name' => 'RegisterAccountMutation',
         'description' => 'A Register User Mutation '
     ];
 
     private $registerUserService;
 
-    public function __construct($attributes = [], IRegisterUserService $registerUserService)
+    public function __construct($attributes = [], IRegisterAccountService $registerUserService)
     {
         parent::__construct($attributes);
         $this->registerUserService = $registerUserService;
@@ -39,14 +39,14 @@ class RegisterUserMutation extends CoreMutation
 
     public function type()
     {
-        return GraphQL::type('RegisterUserOutputType');
+        return GraphQL::type('RegisterAccountOutputType');
     }
 
     public function args()
     {
         return [
             'input' => [
-               'type' => Type::nonNull(GraphQL::type('RegisterUserInputType'))
+               'type' => Type::nonNull(GraphQL::type('RegisterAccountInputType'))
             ],
         ];
     }

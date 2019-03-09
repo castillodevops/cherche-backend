@@ -124,11 +124,12 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
+               'ListAllAccountQuery' => \App\GraphQL\Account\Query\ListAllAccountQuery::class
 
             ],
             'mutation' => [
                 //======================================Account==================================================
-                'RegisterUser' => \App\GraphQL\Account\Mutation\RegisterUserMutation::class,
+                'RegisterUser' => \App\GraphQL\Account\Mutation\RegisterAccountMutation::class,
 
             ]
         ]
@@ -189,8 +190,10 @@ return [
          * Account
          *
          */
-        'RegisterUserInputType' => \App\GraphQL\Account\Type\RegisterUserInputType::class,
-        'RegisterUserOutputType' => \App\GraphQL\Account\Type\RegisterUserOutputType::class,
+        'RegisterAccountInputType'  => \App\GraphQL\Account\Type\RegisterAccountInputType::class,
+        'RegisterAccountOutputType' => \App\GraphQL\Account\Type\RegisterAccountOutputType::class,
+        'ListAllAccountInput'       => \App\GraphQL\Account\Type\ListAllAccountInput::class,
+        'ListAllAccountOutput'      => \App\GraphQL\Account\Type\ListAllAccountOutput::class,
 
     ],
 

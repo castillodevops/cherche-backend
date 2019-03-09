@@ -9,9 +9,9 @@ namespace Modules\Account\Domain\Service;
 
 use Modules\Account\Domain\Model\Account;
 use Modules\Account\Domain\Model\Input\AccountDTO;
-use Modules\Account\Domain\Model\Result\RegisterUserDTO;
+use Modules\Account\Domain\Model\Result\RegisterAccountDTO;
 
-interface IRegisterUserService
+interface IRegisterAccountService
 {
-    public function executeService(AccountDTO $account): RegisterUserDTO;
+    public function executeService(AccountDTO $account): RegisterAccountDTO;
 }

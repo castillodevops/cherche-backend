@@ -11,7 +11,7 @@ namespace Modules\Account\Domain\Model\Result;
 
 use Modules\Account\Domain\Model\Input\AccountDTO;
 
-class RegisterUserDTO
+class RegisterAccountDTO
 {
     public $accountDTO;
     public $statusResponse;
