@@ -65,17 +65,17 @@ class RegisterAccountMutation extends CoreMutation
 
         $surName = $data['surName'];
 
-        $phone = $data['phone'];
-
         $email = $data['email'];
 
         $password = $data['password'];
+
+        $phone = $data['phone'];
 
         $status = "Pending";
 
         $country = $data['country'];
 
-        $accountDTO  = new AccountDTO($name, $surName, $phone, $email, $password, $status, $country);
+        $accountDTO  = new AccountDTO($name, $surName, $email, $password, $phone, $status, $country);
 
         $response = $this->registerUserService->executeService($accountDTO)->toArray();
         return $response;

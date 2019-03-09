@@ -38,13 +38,13 @@ class RegisterAccountService extends CoreService implements IRegisterAccountServ
           Log::info('Register User', [
               'Account' => $accountDTO,
           ]);
-            $validate =  $this->validateFields($accountDTO);
-            if ($validate->fails())
-            {
-                Log::error($validate->errors(), [
-                    'Account' => $accountDTO,
-                ]);
-            }
+//            $validate =  $this->validateFields($accountDTO);
+//            if ($validate->fails())
+//            {
+//                Log::error($validate->errors(), [
+//                    'Account' => $accountDTO,
+//                ]);
+//            }
 
             $account = new Account($accountDTO->toArray());
             $registerUser = new RegisterAccountDTO($accountDTO, false);

@@ -8,8 +8,6 @@
 namespace Modules\Account\Infrastructure\Mysql;
 
 use Illuminate\Support\Facades\Log;
-use Modules\Account\Domain\Model\Input\AccountDTO;
-use Modules\Account\Domain\Model\Input\AccountSearchDTO;
 use \Modules\Account\Domain\Repository\IRegisterAccountRepository;
 use \Modules\Core\Domain\Model\ModelSearchEntity;
 use \Modules\Account\Domain\Model\Account ;
@@ -32,12 +30,10 @@ class MysqlRegisterAccountRepository extends MysqlCoreRepository implements IReg
 
             return parent::listAll($modelSearchEntity);
 
-
         } catch (\Exception $exception){
             Log::error($exception->getMessage(),[
                 'Entity' =>$modelSearchEntity->entity
                 ]
-
             );
             throw $exception;
         }
