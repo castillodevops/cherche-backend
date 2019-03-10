@@ -9,8 +9,8 @@ namespace Modules\Account\Infrastructure\Service;
 
 use App\User;
 use Illuminate\Support\Facades\Validator;
-use Modules\Account\Domain\Model\Input\AccountDTO;
-use Modules\Account\Domain\Model\Result\RegisterAccountDTO;
+use Modules\Account\Domain\Model\Request\AccountRequestDTO;
+use Modules\Account\Domain\Model\Response\AccountResponseDTO;
 use Modules\Account\Domain\Repository\IRegisterAccountRepository;
 use Modules\Account\Domain\Service\IRegisterAccountService;
 use \Modules\Core\Domain\Service\CoreService;
@@ -28,26 +28,26 @@ class RegisterAccountService extends CoreService implements IRegisterAccountServ
     }
 
     /**
-     * @param AccountDTO $accountDTO
+     * @param AccountRequestDTO $accountDTO
      * @return Account
      * @throws \Exception
      */
-    public function executeService(AccountDTO $accountDTO) :RegisterAccountDTO
+    public function executeService(AccountRequestDTO $accountDTO) :AccountResponseDTO
     {
         try{
           Log::info('Register User', [
               'Account' => $accountDTO,
           ]);
-//            $validate =  $this->validateFields($accountDTO);
-//            if ($validate->fails())
-//            {
-//                Log::error($validate->errors(), [
-//                    'Account' => $accountDTO,
-//                ]);
-//            }
+            $validate =  $this->validateFields($accountDTO);
+            if ($validate->fails())
+            {
+                Log::error($validate->errors(), [
+                    'Account' => $accountDTO,
+                ]);
+            }
 
             $account = new Account($accountDTO->toArray());
-            $registerUser = new RegisterAccountDTO($accountDTO, false);
+            $registerUser = new AccountResponseDTO($accountDTO);
             $result = $this->registerUserRepository->saveObject($account);
             if ($result)
                 $registerUser->statusResponse = true;
@@ -63,12 +63,12 @@ class RegisterAccountService extends CoreService implements IRegisterAccountServ
 
     }
 
-   private function validateFields(AccountDTO $accountDTO)
+   private function validateFields(AccountRequestDTO $accountDTO)
    {
        $validate = Validator::make($accountDTO->toArray(),[
            'name' => 'required',
            'surName' => 'required',
-           'email' => 'required|email|unique',
+           'email' => 'required|email|unique:accounts',
            'password' => 'required',
            'phone' => 'required',
            'status' => 'required',

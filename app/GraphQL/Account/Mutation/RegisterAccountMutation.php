@@ -15,7 +15,7 @@ use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 
 use Modules\Account\Domain\Model\Account;
-use Modules\Account\Domain\Model\Input\AccountDTO;
+use Modules\Account\Domain\Model\Request\AccountRequestDTO;
 use Modules\Account\Domain\Service\IRegisterAccountService;
 
 
@@ -56,6 +56,7 @@ class RegisterAccountMutation extends CoreMutation
      * @param $args
      * @param $context
      * @param ResolveInfo $info
+     * @return array
      */
     public function resolve($root, $args, $context, ResolveInfo $info)
     {
@@ -75,7 +76,7 @@ class RegisterAccountMutation extends CoreMutation
 
         $country = $data['country'];
 
-        $accountDTO  = new AccountDTO($name, $surName, $email, $password, $phone, $status, $country);
+        $accountDTO  = new AccountRequestDTO($name, $surName, $email, $password, $phone, $status, $country);
 
         $response = $this->registerUserService->executeService($accountDTO)->toArray();
         return $response;

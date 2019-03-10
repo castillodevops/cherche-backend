@@ -1,21 +1,24 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: nerox
- * Date: 3/5/19
- * Time: 3:25 AM
+ * Account: nerox
+ * Date: 2/16/19
+ * Time: 4:16 PM
  */
 
 namespace Modules\Account\Domain\Repository;
 
-use App\User;
+
 use Modules\Account\Domain\Model\Account;
 use Modules\Account\Domain\Model\Request\AccountRequestDTO;
-use Modules\Account\Domain\Model\Request\AccountSearchRequestDTO;
+use Modules\Core\Domain\Model\ModelEntity;
 use Modules\Core\Domain\Model\ModelSearchEntity;
 
-interface IRegisterAccountRepository
+interface IAccountRepository
 {
-    public function saveObject(Account $account);
+    public function saveObject(Account $user);
     public function listAll(ModelSearchEntity $modelSearchEntity);
+    public function updateObject(AccountRequestDTO $accountDTO, $idAccount);
+    public function deleteObject($idAccount);
+
 }

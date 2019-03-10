@@ -6,17 +6,17 @@
  * Time: 12:40 AM
  */
 
-namespace Modules\Account\Domain\Model\Result;
+namespace Modules\Account\Domain\Model\Response;
 
 
-use Modules\Account\Domain\Model\Input\AccountDTO;
+use Modules\Account\Domain\Model\Request\AccountRequestDTO;
 
-class RegisterAccountDTO
+class AccountResponseDTO
 {
     public $accountDTO;
     public $statusResponse;
 
-    public function __construct(AccountDTO $accountDTO, $statusResponse)
+    public function __construct(AccountRequestDTO $accountDTO = null, $statusResponse = false)
     {
         $this->accountDTO = $accountDTO;
         $this->statusResponse = $statusResponse;

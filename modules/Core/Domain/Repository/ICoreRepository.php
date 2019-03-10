@@ -9,13 +9,16 @@
 namespace Modules\Core\Domain\Repository;
 
 
+use Modules\Account\Domain\Model\Account;
 use Modules\Core\Domain\Model\ModelEntity;
 use Modules\Core\Domain\Model\ModelSearchEntity;
 
 interface ICoreRepository
 {
-    public function basicSaveOne(ModelEntity $entity);
-    public function listAll(ModelSearchEntity $modelSearchEntity);
+    public function basicSaveObject(ModelEntity $entity);
+    public function basicListAll(ModelSearchEntity $modelSearchEntity);
+    public function basicUpdateObject(ModelEntity  $entity);
+    public function basicDeleteOneObject(ModelEntity $entity);
 }
 
 

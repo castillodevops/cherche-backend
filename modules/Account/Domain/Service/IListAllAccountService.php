@@ -9,10 +9,10 @@
 namespace Modules\Account\Domain\Service;
 
 
-use Modules\Account\Domain\Model\Input\AccountSearchDTO;
+use Modules\Account\Domain\Model\Request\AccountSearchRequestDTO;
 use Modules\Core\Domain\Model\ModelSearchEntity;
 
 interface IListAllAccountService
 {
-    public function executeService(AccountSearchDTO $userSearchDTO);
+    public function executeService(AccountSearchRequestDTO $userSearchDTO);
 }

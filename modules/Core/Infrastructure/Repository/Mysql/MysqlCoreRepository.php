@@ -20,7 +20,7 @@ class MysqlCoreRepository implements ICoreRepository
      * @param ModelEntity $entity
      * @throws \Exception
      */
-   public function basicSaveOne(ModelEntity $entity)
+   public function basicSaveObject(ModelEntity $entity)
    {
        try
        {
@@ -44,7 +44,7 @@ class MysqlCoreRepository implements ICoreRepository
      * @return \Illuminate\Database\Eloquent\Collection|ModelEntity[]
      * @throws \Exception
      */
-    public function listAll(ModelSearchEntity $modelSearchEntity)
+    public function basicListAll(ModelSearchEntity $modelSearchEntity)
    {
       try
       {
@@ -54,28 +54,76 @@ class MysqlCoreRepository implements ICoreRepository
               ]);
 
 
-//          if (count($modelSearchEntity->fields) > 0)
-//          {
-//              if (count($modelSearchEntity->andConditions) > 0)
-//              {
-//                  if (count($modelSearchEntity->orConditions) > 0)
-//                  {
-//
-//                          return $modelSearchEntity->entity::all($modelSearchEntity->fields)
-//                              ->where($modelSearchEntity->andConditions);
-////                              ->orWhere($modelSearchEntity->orConditions);
-//
-//                  }
-//                  return $modelSearchEntity->entity::all($modelSearchEntity->fields)
-//                      ->where($modelSearchEntity->andConditions);
-//              }
-//              return $modelSearchEntity->entity::all($modelSearchEntity->fields);
-//          }
+          if (count($modelSearchEntity->fields) > 0)
+          {
+              if (count($modelSearchEntity->andConditions) > 0)
+              {
+                  if (count($modelSearchEntity->orConditions) > 0)
+                  {
+
+                          return $modelSearchEntity->entity::all($modelSearchEntity->fields)
+                              ->where($modelSearchEntity->andConditions)
+                              ->orWhere($modelSearchEntity->orConditions);
+
+                  }
+                  return $modelSearchEntity->entity::all($modelSearchEntity->fields)
+                      ->where($modelSearchEntity->andConditions);
+              }
+              return $modelSearchEntity->entity::all($modelSearchEntity->fields);
+          }
           return $modelSearchEntity->entity::all();
 
       }
       catch (\Exception $exception)
       {
+          throw $exception;
+      }
+   }
+
+    /**
+     * @param ModelEntity $entity
+     * @return bool
+     * @throws \Exception
+     */
+   public function basicUpdateObject(ModelEntity $entity)
+   {
+      try{
+          Log::info("Update".$entity->getKeyName(), [
+              'Name' => $entity->getKeyName(),
+              'Entity' => $entity
+          ]);
+          return $entity->update();
+
+      } catch (\Exception $exception){
+          Log::error($exception->getMessage(), [
+              'Name' => $entity->getKeyName(),
+              'Entity' => $entity
+          ]);
+
+           throw $exception;
+      }
+   }
+
+    /**
+     * @param ModelEntity $entity
+     * @return bool|null
+     * @throws \Exception
+     */
+   public function basicDeleteOneObject(ModelEntity $entity)
+   {
+      try {
+          Log::info("Update".$entity->getKeyName(), [
+              'Name' => $entity->getKeyName(),
+              'Entity' => $entity
+          ]);
+          return $entity->delete();
+
+      } catch (\Exception$exception) {
+          Log::error($exception->getMessage(), [
+              'Name' => $entity->getKeyName(),
+              'Entity' => $entity
+          ]);
+
           throw $exception;
       }
    }

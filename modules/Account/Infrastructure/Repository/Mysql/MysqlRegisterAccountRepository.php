@@ -27,8 +27,7 @@ class MysqlRegisterAccountRepository extends MysqlCoreRepository implements IReg
             Log::info('List All User', [
                 'Entity' => $modelSearchEntity->entity
             ]);
-
-            return parent::listAll($modelSearchEntity);
+            return parent::basicListAll($modelSearchEntity);
 
         } catch (\Exception $exception){
             Log::error($exception->getMessage(),[
@@ -48,7 +47,7 @@ class MysqlRegisterAccountRepository extends MysqlCoreRepository implements IReg
     {
         try
         {
-         return parent::basicSaveOne($account);
+         return parent::basicSaveObject($account);
 
         }catch (\Exception $exception){
             Log::error('Error: '.$exception->getMessage(), [

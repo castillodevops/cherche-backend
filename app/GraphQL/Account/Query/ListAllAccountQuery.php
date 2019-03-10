@@ -8,7 +8,7 @@ use Folklore\GraphQL\Support\Query;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use GraphQL;
-use Modules\Account\Domain\Model\Input\AccountSearchDTO;
+use Modules\Account\Domain\Model\Request\AccountSearchRequestDTO;
 use Modules\Account\Domain\Service\IListAllAccountService;
 
 class ListAllAccountQuery extends Query
@@ -45,7 +45,7 @@ class ListAllAccountQuery extends Query
     public function resolve($root, $args, $context, ResolveInfo $info)
     {
         $data = $args['input'];
-        $accountSearchDTO = new AccountSearchDTO();
+        $accountSearchDTO = new AccountSearchRequestDTO();
         if ($data['id'] != null)
             $accountSearchDTO->setId($data['id']);
 

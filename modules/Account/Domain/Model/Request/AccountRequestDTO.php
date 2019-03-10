@@ -6,14 +6,14 @@
  * Time: 2:36 AM
  */
 
-namespace Modules\Account\Domain\Model\Input;
+namespace Modules\Account\Domain\Model\Request;
 
 
-use Modules\Account\Domain\Model\Result\RegisterAccountDTO;
+use Modules\Account\Domain\Model\Response\AccountResponseDTO;
 
-class AccountDTO
+class AccountRequestDTO
 {
-    public $name;
+    public  $name;
     public $surName;
     public $email;
     public $password;
@@ -44,7 +44,7 @@ class AccountDTO
         ];
     }
 
-    public function buildResponseByAttributeName(RegisterAccountDTO $registerUserDTO){
+    public function buildResponseByAttributeName(AccountResponseDTO $registerUserDTO){
 
         $registerUserDTO->name = $this->name;
         $registerUserDTO->surName = $this->surName;

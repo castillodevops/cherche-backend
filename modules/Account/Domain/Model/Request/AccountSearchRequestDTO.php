@@ -6,12 +6,12 @@
  * Time: 1:07 AM
  */
 
-namespace Modules\Account\Domain\Model\Input;
+namespace Modules\Account\Domain\Model\Request;
 
 
 use Modules\Account\Domain\Model\Account;
 
-class AccountSearchDTO
+class AccountSearchRequestDTO
 {
     private $id;
     private $model;

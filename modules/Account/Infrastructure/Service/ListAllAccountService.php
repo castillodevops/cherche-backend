@@ -11,7 +11,7 @@ namespace Modules\Account\Infrastructure\Service;
 
 use Illuminate\Support\Facades\Log;
 use Modules\Account\Domain\Model\Account;
-use Modules\Account\Domain\Model\Input\AccountSearchDTO;
+use Modules\Account\Domain\Model\Request\AccountSearchRequestDTO;
 use Modules\Account\Domain\Repository\IRegisterAccountRepository;
 use Modules\Account\Domain\Service\IListAllAccountService;
 use Modules\Core\Domain\Model\ModelSearchEntity;
@@ -31,11 +31,11 @@ class ListAllAccountService extends CoreService implements IListAllAccountServic
     }
 
     /**
-     * @param AccountSearchDTO $userSearchDTO
+     * @param AccountSearchRequestDTO $userSearchDTO
      * @return mixed
      * @throws \Exception
      */
-    public function executeService(AccountSearchDTO $userSearchDTO)
+    public function executeService(AccountSearchRequestDTO $userSearchDTO)
     {
         try
         {

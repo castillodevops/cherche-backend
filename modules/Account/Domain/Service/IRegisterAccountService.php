@@ -8,10 +8,10 @@
 namespace Modules\Account\Domain\Service;
 
 use Modules\Account\Domain\Model\Account;
-use Modules\Account\Domain\Model\Input\AccountDTO;
-use Modules\Account\Domain\Model\Result\RegisterAccountDTO;
+use Modules\Account\Domain\Model\Request\AccountRequestDTO;
+use Modules\Account\Domain\Model\Response\AccountResponseDTO;
 
 interface IRegisterAccountService
 {
-    public function executeService(AccountDTO $account): RegisterAccountDTO;
+    public function executeService(AccountRequestDTO $account): AccountResponseDTO;
 }
