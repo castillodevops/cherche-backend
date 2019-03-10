@@ -9,7 +9,9 @@
 namespace Modules\Account\Domain\Service;
 
 
+use Modules\Account\Domain\Model\Request\AccountRequestDTO;
+
 interface IUpdateAccountService
 {
-    public function executeService();
+    public function executeService($idAccount, AccountRequestDTO $accountRequestDTO);
 }
