@@ -15,6 +15,7 @@ use Modules\Account\Domain\Model\Request\AccountSearchRequestDTO;
 use Modules\Account\Domain\Repository\IRegisterAccountRepository;
 use Modules\Account\Domain\Service\IListAllAccountService;
 use Modules\Core\Domain\Model\ModelSearchEntity;
+use Modules\Core\Domain\Model\ModelTerms;
 use Modules\Core\Domain\Service\CoreService;
 
 class ListAllAccountService extends CoreService implements IListAllAccountService
@@ -37,20 +38,22 @@ class ListAllAccountService extends CoreService implements IListAllAccountServic
      */
     public function executeService(AccountSearchRequestDTO $userSearchDTO)
     {
-        try
-        {
+        try {
             Log::info('Lis all user', [
                 'InputSearch' => $userSearchDTO
             ]);
+            $andConditions = $userSearchDTO->buildConditions();
+
             $userSearchDTO->setModel($this->account);
-            $modelSearchEntity = new ModelSearchEntity($userSearchDTO->getModel());
+            $modelSearchEntity = new ModelSearchEntity($userSearchDTO->getModel(), [], $andConditions);
             return $this->registerUserRepository->listAll($modelSearchEntity);
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             Log::error($exception->getMessage(), [
                 'InputSearch' => $userSearchDTO
             ]);
             throw $exception;
         }
-    }
+       }
+
 }

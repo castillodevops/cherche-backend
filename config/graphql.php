@@ -135,6 +135,7 @@ return [
                 'RegisterAccountMutation' =>  \App\GraphQL\Account\Mutation\RegisterAccountMutation::class,
                 'CreateAccountMutation'   =>  \App\GraphQL\Account\Mutation\CreateAccountMutation::class,
                 'DeleteAccountMutation'   =>  \App\GraphQL\Account\Mutation\DeleteAccountMutation::class,
+                'UpdateAccountMutation'   =>  \App\GraphQL\Account\Mutation\UpdateAccountMutation::class,
 
             ]
         ]
@@ -205,6 +206,8 @@ return [
         'AccountStatusEnum'          =>  \App\GraphQL\Enums\Account\Type\AccountStatusEnum::class,
         'DeleteAccountInputType'     =>  \App\GraphQL\Account\Type\DeleteAccountInputType::class,
         'DeleteAccountOutputType'    =>  \App\GraphQL\Account\Type\DeleteAccountOutputType::class,
+        'UpdateAccountInputType'     =>  \App\GraphQL\Account\Type\UpdateAccountInputType::class,
+        'UpdateAccountOutputType'    =>  \App\GraphQL\Account\Type\UpdateAccountOutputType::class,
 
     ],
 

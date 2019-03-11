@@ -21,8 +21,6 @@ class AccountRequestDTO
     public $status;
     public $country;
 
-
-
     public function toArray(){
       return [
         'name'     => $this->name,

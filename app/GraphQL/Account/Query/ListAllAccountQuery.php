@@ -44,8 +44,13 @@ class ListAllAccountQuery extends CoreQuery
     {
         $data = $args['input'];
         $accountSearchDTO = new AccountSearchRequestDTO();
-        if ($data['id'] != null)
-            $accountSearchDTO->setId($data['id']);
+        if (isset($data['id'])) $accountSearchDTO->setId($data['id']);
+        if (isset($data['name'])) $accountSearchDTO->name = $data['name'];
+        if (isset($data['surName'])) $accountSearchDTO->surName = $data['surName'];
+        if (isset($data['email'])) $accountSearchDTO->email = $data['email'];
+        if (isset($data['phone'])) $accountSearchDTO->phone = $data['phone'];
+        if (isset($data['status']))  $accountSearchDTO->status = $data['status'];
+        if (isset($data['country'])) $accountSearchDTO->country = $data['country'];
 
         $listofUsers = $this->listAllAccountService->executeService($accountSearchDTO);
         return $listofUsers;

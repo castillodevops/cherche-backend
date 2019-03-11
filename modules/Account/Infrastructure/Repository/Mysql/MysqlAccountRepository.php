@@ -15,7 +15,7 @@ use Modules\Account\Domain\Model\Request\AccountRequestDTO;
 use Modules\Account\Domain\Repository\IAccountRepository;
 use Modules\Core\Domain\Model\ModelEntity;
 use Modules\Core\Domain\Model\ModelSearchEntity;
-use Modules\Core\Domain\Model\Response\EntityDeleteRequestDTO;
+use Modules\Core\Domain\Model\Response\EntityResponseDTO;
 use Modules\Core\Infrastructure\Mysql\MysqlCoreRepository;
 
 class MysqlAccountRepository extends MysqlCoreRepository implements IAccountRepository
@@ -39,6 +39,7 @@ class MysqlAccountRepository extends MysqlCoreRepository implements IAccountRepo
 
     /**
      * @param Account $account
+     * @return bool
      * @throws \Exception
      */
     public function saveObject(Account $account)
@@ -59,25 +60,34 @@ class MysqlAccountRepository extends MysqlCoreRepository implements IAccountRepo
     /**
      * @param AccountRequestDTO $accountDTO
      * @param $idAccount
-     * @return bool
+     * @return EntityResponseDTO
      * @throws \Exception
      */
     public function updateObject(AccountRequestDTO $accountDTO, $idAccount)
     {
+        $errors = array();
         $accountModel = Account::find($idAccount);
+        $responseUpdate = new EntityResponseDTO($idAccount, false, $errors);
+        if (!$accountModel){
+            $errors['errors'] = "Error: User not found";
+            $responseUpdate->errors = $errors;
+            return $responseUpdate;
+        }
         if (!is_null($accountDTO->name))$accountModel->name = $accountDTO->name;
         if (!is_null($accountDTO->surName))$accountModel->surName = $accountDTO->surName;
         if (!is_null($accountDTO->email))$accountModel->email = $accountDTO->email;
         if (!is_null($accountDTO->phone))$accountModel->phone = $accountDTO->phone;
         if (!is_null($accountDTO->country))$accountModel->country = $accountDTO->country;
+        $response = parent::basicUpdateObject($accountModel);
+        $responseUpdate->response = $response;
 
-        return parent::basicUpdateObject($accountModel);
+        return $responseUpdate;
 
     }
 
     /**
      * @param $idAccount
-     * @return EntityDeleteRequestDTO
+     * @return EntityResponseDTO
      * @throws \Exception
      */
     public function deleteObject($idAccount)
@@ -87,7 +97,7 @@ class MysqlAccountRepository extends MysqlCoreRepository implements IAccountRepo
          * @var Account $account
          */
         $account  = Account::find($idAccount);
-        $responseDelete = new EntityDeleteRequestDTO($idAccount, false, $errors);
+        $responseDelete = new EntityResponseDTO($idAccount, false, $errors);
         if (!$account){
             $errors['errors'] = "Error: User not found";
             $responseDelete->errors = $errors;

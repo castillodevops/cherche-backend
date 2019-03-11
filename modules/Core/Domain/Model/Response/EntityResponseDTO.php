@@ -12,7 +12,7 @@ namespace Modules\Core\Domain\Model\Response;
 use Modules\Core\Domain\Model\ModelEntity;
 use phpDocumentor\Reflection\Types\Boolean;
 
-class EntityDeleteRequestDTO
+class EntityResponseDTO
 {
     public $entityId;
     public $response;
@@ -26,7 +26,7 @@ class EntityDeleteRequestDTO
     }
     public function toArray(){
         return [
-            'entity' => $this->entityId,
+            'entityId' => $this->entityId,
             'response' => $this->response,
             'errors' => $this->errors,
         ];

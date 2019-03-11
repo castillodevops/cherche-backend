@@ -52,26 +52,14 @@ class MysqlCoreRepository implements ICoreRepository
               [
                   'Model Output' => $modelSearchEntity,
               ]);
-
-
-          if (count($modelSearchEntity->fields) > 0)
-          {
-              if (count($modelSearchEntity->andConditions) > 0)
-              {
-                  if (count($modelSearchEntity->orConditions) > 0)
-                  {
-
-                          return $modelSearchEntity->entity::all($modelSearchEntity->fields)
-                              ->where($modelSearchEntity->andConditions)
-                              ->orWhere($modelSearchEntity->orConditions);
-
-                  }
-                  return $modelSearchEntity->entity::all($modelSearchEntity->fields)
-                      ->where($modelSearchEntity->andConditions);
+          $response = $modelSearchEntity->entity::all();
+          if (count($modelSearchEntity->andConditions) > 0) {
+              foreach ($modelSearchEntity->andConditions as $condition){
+                  $response = $response->where($condition[0], $condition[1], $condition[2]);
               }
-              return $modelSearchEntity->entity::all($modelSearchEntity->fields);
+              return $response;
           }
-          return $modelSearchEntity->entity::all();
+          return $response;
 
       }
       catch (\Exception $exception)

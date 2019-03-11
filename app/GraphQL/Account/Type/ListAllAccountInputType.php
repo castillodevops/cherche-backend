@@ -23,6 +23,38 @@ class ListAllAccountInputType extends BaseType
                 'type' => Type::int(),
                 'description' => 'Id of User'
             ],
+            'name' => [
+                    'name' => 'name',
+                    'type' => Type::string(),
+                    'description' => 'Name of User'
+                ],
+                'surName' => [
+                    'name' => 'surName',
+                    'type' => Type::string(),
+                    'description' => 'Sur Name'
+                ],
+                'phone' => [
+                    'name' => 'phone',
+                    'type' => Type::string(),
+                    'description' => 'Mobile of User'
+                ],
+                'email' => [
+                    'name' => 'email',
+                    'type' => Type::string(),
+                    'description' => 'Email of User'
+                ],
+                'status' => [
+                    'name' => 'status',
+                    'type' => GraphQL::type('AccountStatusEnum'),
+                    'description' => 'Status of User'
+                ],
+                'country' => [
+                    'country' => 'country',
+                    'type' => Type::string(),
+                    'description' => 'Country of User'
+                ]
+
+
 
         ];
     }

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Modules\Account\Domain\Model\Request\AccountRequestDTO;
 use Modules\Account\Domain\Repository\IAccountRepository;
 use Modules\Account\Domain\Service\IUpdateAccountService;
+use Modules\Core\Domain\Model\Response\EntityResponseDTO;
 use Modules\Core\Domain\Service\CoreService;
 
 class UpdateAccountService extends CoreService implements IUpdateAccountService
@@ -28,7 +29,7 @@ class UpdateAccountService extends CoreService implements IUpdateAccountService
      * @param AccountRequestDTO $accountRequestDTO
      * @throws \Exception
      */
-    public function executeService($idAccount, AccountRequestDTO $accountRequestDTO)
+    public function executeService($idAccount, AccountRequestDTO $accountRequestDTO):EntityResponseDTO
     {
         try{
             Log::error("Update account", [

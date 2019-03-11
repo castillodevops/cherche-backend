@@ -10,8 +10,9 @@ namespace Modules\Account\Domain\Service;
 
 
 use Modules\Account\Domain\Model\Request\AccountRequestDTO;
+use Modules\Core\Domain\Model\Response\EntityResponseDTO;
 
 interface IUpdateAccountService
 {
-    public function executeService($idAccount, AccountRequestDTO $accountRequestDTO);
+    public function executeService($idAccount, AccountRequestDTO $accountRequestDTO):EntityResponseDTO;
 }

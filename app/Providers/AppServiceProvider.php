@@ -10,12 +10,14 @@ use Modules\Account\Domain\Service\ICreateAccountService;
 use Modules\Account\Domain\Service\IDeleteAccountService;
 use Modules\Account\Domain\Service\IListAllAccountService;
 use Modules\Account\Domain\Service\IRegisterAccountService;
+use Modules\Account\Domain\Service\IUpdateAccountService;
 use Modules\Account\Infrastructure\Mysql\MysqlRegisterAccountRepository;
 use Modules\Account\Infrastructure\Repository\Mysql\MysqlAccountRepository;
 use Modules\Account\Infrastructure\Service\CreateAccountService;
 use Modules\Account\Infrastructure\Service\DeleteAccountService;
 use Modules\Account\Infrastructure\Service\ListAllAccountService;
 use Modules\Account\Infrastructure\Service\RegisterAccountService;
+use Modules\Account\Infrastructure\Service\UpdateAccountService;
 use Modules\Core\Domain\Repository\ICoreRepository;
 use Modules\Core\Domain\Service\CoreService;
 use Modules\Core\Domain\Service\ICoreService;
@@ -61,6 +63,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IRegisterAccountService::class, RegisterAccountService::class);
         $this->app->bind(IListAllAccountService::class, ListAllAccountService::class);
         $this->app->bind(ICreateAccountService::class, CreateAccountService::class);
+        $this->app->bind(IUpdateAccountService::class, UpdateAccountService::class);
         $this->app->bind(IDeleteAccountService::class, DeleteAccountService::class);
         /**
          *
