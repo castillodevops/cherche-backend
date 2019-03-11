@@ -16,7 +16,7 @@ class DeleteAccountOutputType extends BaseType
     public function fields()
     {
         return [
-           'idEntity' =>  [
+           'entityId' =>  [
                'type' => Type::nonNull(Type::int())
            ],
            'response' => [
