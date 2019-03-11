@@ -15,6 +15,7 @@ use Modules\Account\Domain\Model\Request\AccountRequestDTO;
 use Modules\Account\Domain\Repository\IAccountRepository;
 use Modules\Core\Domain\Model\ModelEntity;
 use Modules\Core\Domain\Model\ModelSearchEntity;
+use Modules\Core\Domain\Model\Response\EntityDeleteRequestDTO;
 use Modules\Core\Infrastructure\Mysql\MysqlCoreRepository;
 
 class MysqlAccountRepository extends MysqlCoreRepository implements IAccountRepository
@@ -75,13 +76,25 @@ class MysqlAccountRepository extends MysqlCoreRepository implements IAccountRepo
     }
 
     /**
-     * @param ModelEntity $entity
-     * @return bool|null
+     * @param $idAccount
+     * @return EntityDeleteRequestDTO
      * @throws \Exception
      */
     public function deleteObject($idAccount)
     {
+        $errors = array();
+        /**
+         * @var Account $account
+         */
         $account  = Account::find($idAccount);
-        return parent::basicDeleteOneObject($account);
+        $responseDelete = new EntityDeleteRequestDTO($idAccount, false, $errors);
+        if (!$account){
+            $errors['errors'] = "Error: User not found";
+            $responseDelete->errors = $errors;
+            return $responseDelete;
+        }
+        $response = parent::basicDeleteOneObject($account);
+        $responseDelete->response = $response;
+        return $responseDelete;
     }
 }

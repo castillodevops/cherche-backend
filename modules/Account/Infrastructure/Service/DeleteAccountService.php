@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Modules\Account\Domain\Model\Account;
 use Modules\Account\Domain\Repository\IAccountRepository;
 use Modules\Account\Domain\Service\IDeleteAccountService;
+use Modules\Core\Domain\Model\Response\EntityDeleteRequestDTO;
 use Modules\Core\Domain\Service\CoreService;
 
 class DeleteAccountService extends CoreService implements IDeleteAccountService
@@ -25,12 +26,13 @@ class DeleteAccountService extends CoreService implements IDeleteAccountService
         $this->accountRepository = $accountRepository;
     }
 
-    public function executeService($idAccount)
+    public function executeService($idAccount):EntityDeleteRequestDTO
     {
         try {
             Log::info("Action for delete account", [
                 'Account Id' => $idAccount
             ]);
+
             return $this->accountRepository->deleteObject($idAccount);
 
         } catch (\Exception $exception){

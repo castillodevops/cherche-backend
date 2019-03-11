@@ -9,7 +9,9 @@
 namespace Modules\Account\Domain\Service;
 
 
+use Modules\Core\Domain\Model\Response\EntityDeleteRequestDTO;
+
 interface IDeleteAccountService
 {
-    public function executeService($idAccount);
+    public function executeService($idAccount):EntityDeleteRequestDTO;
 }

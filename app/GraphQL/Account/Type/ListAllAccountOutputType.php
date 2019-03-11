@@ -40,7 +40,7 @@ class ListAllAccountOutputType extends BaseType
                 'description' => 'Email of User'
             ],
             'status' => [
-                'type' => Type::nonNull(GraphQL::type('AccountStatusEnum')),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'Status of User'
             ],
             'country' => [
