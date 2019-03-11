@@ -8,6 +8,8 @@
 namespace Modules\Account\Infrastructure\Service;
 
 use App\User;
+use Couchbase\Exception;
+use Egulias\EmailValidator\Validation\Exception\EmptyValidationList;
 use Illuminate\Support\Facades\Validator;
 use Modules\Account\Domain\Model\Request\AccountRequestDTO;
 use Modules\Account\Domain\Model\Response\AccountResponseDTO;
@@ -38,16 +40,17 @@ class RegisterAccountService extends CoreService implements IRegisterAccountServ
           Log::info('Register User', [
               'Account' => $accountDTO,
           ]);
+            $registerUser = new AccountResponseDTO($accountDTO);
             $validate =  $this->validateFields($accountDTO);
             if ($validate->fails())
             {
                 Log::error($validate->errors(), [
                     'Account' => $accountDTO,
                 ]);
+                return $registerUser;
             }
 
             $account = new Account($accountDTO->toArray());
-            $registerUser = new AccountResponseDTO($accountDTO);
             $result = $this->registerUserRepository->saveObject($account);
             if ($result)
                 $registerUser->statusResponse = true;

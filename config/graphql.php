@@ -124,12 +124,16 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
+                /**
+                 * AccountQuery
+                 */
                'ListAllAccountQuery' => \App\GraphQL\Account\Query\ListAllAccountQuery::class
 
             ],
             'mutation' => [
-                //======================================Account==================================================
-                'RegisterUser' => \App\GraphQL\Account\Mutation\RegisterAccountMutation::class,
+                 //======================================Account==================================================
+                'RegisterAccountMutation' => \App\GraphQL\Account\Mutation\RegisterAccountMutation::class,
+                'CreateAccountMutation' => \App\GraphQL\Account\Mutation\CreateAccountMutation::class,
 
             ]
         ]
@@ -184,16 +188,20 @@ return [
      * ]
      */
     'types' => [
+
         /**
          *
          *
          * Account
          *
          */
-        'RegisterAccountInputType'  => \App\GraphQL\Account\Type\RegisterAccountInputType::class,
-        'RegisterAccountOutputType' => \App\GraphQL\Account\Type\RegisterAccountOutputType::class,
-        'ListAllAccountInput'       => \App\GraphQL\Account\Type\ListAllAccountInput::class,
-        'ListAllAccountOutput'      => \App\GraphQL\Account\Type\ListAllAccountOutput::class,
+        'RegisterAccountInputType'   =>  \App\GraphQL\Account\Type\RegisterAccountInputType::class,
+        'RegisterAccountOutputType'  =>  \App\GraphQL\Account\Type\RegisterAccountOutputType::class,
+        'ListAllAccountInputType'    =>  \App\GraphQL\Account\Type\ListAllAccountInputType::class,
+        'ListAllAccountOutputType'   =>  \App\GraphQL\Account\Type\ListAllAccountOutputType::class,
+        'CreateAccountInputType'     =>  \App\GraphQL\Account\Type\CreateAccountInputType::class,
+        'CreateAccountOutputType'    =>  \App\GraphQL\Account\Type\CreateAccountOutputType::class,
+        'AccountStatusEnum'            =>\App\GraphQL\Enums\Account\Type\AccountStatusEnum::class,
 
     ],
 

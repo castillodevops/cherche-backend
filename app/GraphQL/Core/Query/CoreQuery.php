@@ -13,8 +13,5 @@ use Folklore\GraphQL\Support\Query;
 
 class CoreQuery extends Query
 {
-    public function __construct($attributes = [])
-    {
-        parent::__construct($attributes);
-    }
+
 }

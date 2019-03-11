@@ -3,11 +3,15 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\Account\Domain\Repository\IAccountRepository;
 use Modules\Account\Domain\Repository\IRegisterAccountRepository;
 use Illuminate\Support\Facades\Schema;
+use Modules\Account\Domain\Service\ICreateAccountService;
 use Modules\Account\Domain\Service\IListAllAccountService;
 use Modules\Account\Domain\Service\IRegisterAccountService;
 use Modules\Account\Infrastructure\Mysql\MysqlRegisterAccountRepository;
+use Modules\Account\Infrastructure\Repository\Mysql\MysqlAccountRepository;
+use Modules\Account\Infrastructure\Service\CreateAccountService;
 use Modules\Account\Infrastructure\Service\ListAllAccountService;
 use Modules\Account\Infrastructure\Service\RegisterAccountService;
 use Modules\Core\Domain\Repository\ICoreRepository;
@@ -54,11 +58,13 @@ class AppServiceProvider extends ServiceProvider
          */
         $this->app->bind(IRegisterAccountService::class, RegisterAccountService::class);
         $this->app->bind(IListAllAccountService::class, ListAllAccountService::class);
+        $this->app->bind(ICreateAccountService::class, CreateAccountService::class);
         /**
          *
-         * Account Repository
+         * Account Repository for Mysql
          */
         $this->app->bind(IRegisterAccountRepository::class, MysqlRegisterAccountRepository::class);
+        $this->app->bind(IAccountRepository::class, MysqlAccountRepository::class);
 
     }
 }

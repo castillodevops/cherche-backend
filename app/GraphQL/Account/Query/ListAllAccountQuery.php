@@ -2,16 +2,14 @@
 
 namespace App\GraphQL\Account\Query;
 
-use App\GraphQL\Account\Type\ListAllAccountInput;
-use App\GraphQL\Account\Type\ListAllAccountOutput;
-use Folklore\GraphQL\Support\Query;
+use App\GraphQL\Core\Query\CoreQuery;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use GraphQL;
 use Modules\Account\Domain\Model\Request\AccountSearchRequestDTO;
 use Modules\Account\Domain\Service\IListAllAccountService;
 
-class ListAllAccountQuery extends Query
+class ListAllAccountQuery extends CoreQuery
 {
     protected $attributes = [
         'name' => 'ListAllAccountQuery',
@@ -28,7 +26,7 @@ class ListAllAccountQuery extends Query
 
     public function type()
     {
-        return Type::listOf(GraphQL::type('ListAllAccountOutput'));
+        return Type::listOf(GraphQL::type('ListAllAccountOutputType'));
 
     }
 
@@ -36,7 +34,7 @@ class ListAllAccountQuery extends Query
     {
         return [
             'input' => [
-                'type' => Type::nonNull(GraphQL::type('ListAllAccountInput')),
+                'type' => Type::nonNull(GraphQL::type('ListAllAccountInputType')),
                 'description' => 'List all user'
             ],
         ];

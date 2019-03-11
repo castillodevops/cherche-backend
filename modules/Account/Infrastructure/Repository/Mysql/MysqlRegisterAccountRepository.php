@@ -42,6 +42,7 @@ class MysqlRegisterAccountRepository extends MysqlCoreRepository implements IReg
     /**
      * @param Account $account
      * @return bool
+     * @throws \Exception
      */
     public function saveObject(Account $account)
     {
@@ -53,6 +54,7 @@ class MysqlRegisterAccountRepository extends MysqlCoreRepository implements IReg
             Log::error('Error: '.$exception->getMessage(), [
                 'Account' => $account
             ]);
+            throw $exception;
         }
 
     }

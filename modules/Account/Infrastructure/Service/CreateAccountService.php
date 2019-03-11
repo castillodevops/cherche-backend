@@ -30,22 +30,24 @@ class CreateAccountService extends CoreService implements ICreateAccountService
      * @return AccountResponseDTO
      * @throws \Exception
      */
-    public function executeService(AccountRequestDTO $accountDTO)
+    public function executeService(AccountRequestDTO $accountDTO):AccountResponseDTO
     {
         try{
             Log::info('Register User', [
                 'Account' => $accountDTO,
             ]);
+            $newAccountResponse = new AccountResponseDTO($accountDTO);
             $validate =  $this->validateFields($accountDTO);
             if ($validate->fails())
             {
                 Log::error($validate->errors(), [
                     'Account' => $accountDTO,
                 ]);
+                return $newAccountResponse;
+
             }
 
             $account = new Account($accountDTO->toArray());
-            $newAccountResponse = new AccountResponseDTO($accountDTO);
             $result = $this->accountRepository->saveObject($account);
             if ($result)
                 $newAccountResponse->statusResponse = true;

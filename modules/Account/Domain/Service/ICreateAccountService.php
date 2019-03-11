@@ -9,8 +9,9 @@ namespace Modules\Account\Domain\Service;
 
 
 use Modules\Account\Domain\Model\Request\AccountRequestDTO;
+use Modules\Account\Domain\Model\Response\AccountResponseDTO;
 
 interface ICreateAccountService
 {
-    public function executeService(AccountRequestDTO $accountDTO);
+    public function executeService(AccountRequestDTO $accountDTO):AccountResponseDTO;
 }

@@ -6,10 +6,10 @@ use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as BaseType;
 use GraphQL;
 
-class ListAllAccountInput extends BaseType
+class ListAllAccountInputType extends BaseType
 {
     protected $attributes = [
-        'name' => 'ListAllAccountInput',
+        'name' => 'ListAllAccountInputType',
         'description' => 'A type'
     ];
 

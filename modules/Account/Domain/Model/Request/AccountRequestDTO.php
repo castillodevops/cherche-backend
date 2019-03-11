@@ -21,16 +21,7 @@ class AccountRequestDTO
     public $status;
     public $country;
 
-    public function __construct($name, $surName, $email, $password, $phone, $status, $country)
-    {
-        $this->name = $name;
-        $this->surName = $surName;
-        $this->email = $email;
-        $this->password = $password;
-        $this->phone = $phone;
-        $this->status = $status;
-        $this->country = $country;
-    }
+
 
     public function toArray(){
       return [

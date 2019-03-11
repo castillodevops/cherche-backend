@@ -9,6 +9,7 @@
 namespace Modules\Account\Infrastructure\Repository\Mysql;
 
 
+use Illuminate\Support\Facades\Log;
 use Modules\Account\Domain\Model\Account;
 use Modules\Account\Domain\Model\Request\AccountRequestDTO;
 use Modules\Account\Domain\Repository\IAccountRepository;
@@ -18,9 +19,21 @@ use Modules\Core\Infrastructure\Mysql\MysqlCoreRepository;
 
 class MysqlAccountRepository extends MysqlCoreRepository implements IAccountRepository
 {
+    /**
+     * @param ModelSearchEntity $modelSearchEntity
+     * @return \Illuminate\Database\Eloquent\Collection|ModelEntity[]
+     * @throws \Exception
+     */
     public function listAll(ModelSearchEntity $modelSearchEntity)
     {
-       return parent::listAll($modelSearchEntity);
+
+       try
+       {
+           return parent::basicListAll($modelSearchEntity);
+
+       } catch (\Exception $exception){
+           throw $exception;
+       }
     }
 
     /**
@@ -30,9 +43,15 @@ class MysqlAccountRepository extends MysqlCoreRepository implements IAccountRepo
     public function saveObject(Account $account)
     {
         try {
-            parent::basicSaveObject($account);
-        } catch (\Exception $e) {
-             throw $e;
+
+            return parent::basicSaveObject($account);
+
+        } catch (\Exception $exception) {
+            Log::error('Error: '.$exception->getMessage(), [
+                'Account' => $account
+            ]);
+            throw $exception;
+
         }
     }
 

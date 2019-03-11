@@ -8,13 +8,14 @@
 
 namespace App\GraphQL\Account\Mutation;
 
-use App\GraphQL\Account\Type\RegisterAccountInputType;
 use App\GraphQL\Core\Mutation\CoreMutation;
+use App\GraphQL\Enums\Account\Type\AccountStatusEnum;
 use GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 
-use Modules\Account\Domain\Model\Account;
+
+use Modules\Account\Domain\Model\Enum\AccountEnum;
 use Modules\Account\Domain\Model\Request\AccountRequestDTO;
 use Modules\Account\Domain\Service\IRegisterAccountService;
 
@@ -30,11 +31,13 @@ class RegisterAccountMutation extends CoreMutation
     ];
 
     private $registerUserService;
+    private $accountRequestDTO;
 
-    public function __construct($attributes = [], IRegisterAccountService $registerUserService)
+    public function __construct($attributes = [], IRegisterAccountService $registerUserService, AccountRequestDTO $accountRequestDTO)
     {
         parent::__construct($attributes);
         $this->registerUserService = $registerUserService;
+        $this->accountRequestDTO = $accountRequestDTO;
     }
 
     public function type()
@@ -62,23 +65,15 @@ class RegisterAccountMutation extends CoreMutation
     {
         $data = $args['input'];
 
-        $name = $data['name'];
+        $this->accountRequestDTO->name = $data['name'];
+        $this->accountRequestDTO->surName = $data['surName'];
+        $this->accountRequestDTO->email = $data['email'];
+        $this->accountRequestDTO->password = $data['password'];
+        $this->accountRequestDTO->phone = $data['phone'];
+        $this->accountRequestDTO->status = AccountEnum::PENDING;
+        $this->accountRequestDTO->country = $data['country'];
 
-        $surName = $data['surName'];
-
-        $email = $data['email'];
-
-        $password = $data['password'];
-
-        $phone = $data['phone'];
-
-        $status = "Pending";
-
-        $country = $data['country'];
-
-        $accountDTO  = new AccountRequestDTO($name, $surName, $email, $password, $phone, $status, $country);
-
-        $response = $this->registerUserService->executeService($accountDTO)->toArray();
+        $response = $this->registerUserService->executeService($this->accountRequestDTO)->toArray();
         return $response;
 
     }

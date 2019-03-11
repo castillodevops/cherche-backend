@@ -49,7 +49,7 @@ class RegisterAccountOutputType extends BaseType
                     'description' => 'Password of User'
                 ],
                 'status' => [
-                    'type' => Type::nonNull(Type::string()),
+                    'type' => Type::nonNull(GraphQL::type('AccountStatusEnum')),
                     'description' => 'Status of User'
                 ],
                 'country' => [
