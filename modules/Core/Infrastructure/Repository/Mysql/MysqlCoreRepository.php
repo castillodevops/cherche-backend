@@ -9,6 +9,7 @@
 namespace Modules\Core\Infrastructure\Mysql;
 
 
+use Modules\Account\Domain\Model\Enum\AccountEnum;
 use Modules\Core\Domain\Model\ModelEntity;
 use Modules\Core\Domain\Model\ModelSearchEntity;
 use Illuminate\Support\Facades\Log;
@@ -104,7 +105,8 @@ class MysqlCoreRepository implements ICoreRepository
               'Name' => $entity->getKeyName(),
               'Entity' => $entity
           ]);
-          return $entity->delete();
+          $entity->status = AccountEnum::TRASH;
+          return $entity->update();
 
       } catch (\Exception$exception) {
           Log::error($exception->getMessage(), [
